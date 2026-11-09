@@ -108,6 +108,40 @@ body{font-family:var(--f-ui);padding-left:max(16px, env(safe-area-inset-left, 0p
 .slide.center > .cols,.slide.center > .trio,.slide.center > .grid6,.slide.center > .myths,.slide.center > .qs,.slide.center > .band{width:100%}
 .center .cols > div{align-items:center}
 
+/* intro animations (first six slides) */
+@keyframes i-rise{from{opacity:0;transform:translateY(2.4cqw)}to{opacity:1;transform:none}}
+@keyframes i-left{from{opacity:0;transform:translateX(-4cqw)}to{opacity:1;transform:none}}
+@keyframes i-right{from{opacity:0;transform:translateX(4cqw)}to{opacity:1;transform:none}}
+@keyframes i-drop{from{opacity:0;transform:translateY(-60px)}70%{opacity:1;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes i-zoom{from{opacity:0;transform:scale(1.25);letter-spacing:.2em}to{opacity:1;transform:none}}
+@keyframes i-hook{from{transform:translateY(-170px)}to{transform:none}}
+@keyframes i-swing{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@keyframes i-glow{0%,100%{opacity:.12}50%{opacity:.32}}
+@keyframes i-fade{from{opacity:0}to{opacity:1}}
+.intro.on .kicker{animation:i-left .5s ease-out both}
+.intro.on .h{animation:i-rise .6s .12s ease-out both}
+.intro.on .p{animation:i-rise .6s .35s ease-out both}
+.intro.on .p + .p{animation-delay:.6s}
+.intro.on .small{animation:i-fade .8s 1s both}
+.intro.on .ul li{animation:i-left .5s ease-out both}
+.intro.on .ul li:nth-child(1){animation-delay:.4s}.intro.on .ul li:nth-child(2){animation-delay:.75s}.intro.on .ul li:nth-child(3){animation-delay:1.1s}.intro.on .ul li:nth-child(4){animation-delay:1.45s}
+.intro.on .card .ul li{animation-name:i-fade}
+.intro.on .cols > .card:nth-child(1){animation:i-left .7s .6s ease-out both}
+.intro.on .cols > .card:nth-child(2){animation:i-right .7s .9s ease-out both}
+.intro.on .trio .card{animation:i-rise .6s ease-out both}
+.intro.on .trio .card:nth-child(1){animation-delay:.4s}.intro.on .trio .card:nth-child(2){animation-delay:.7s}.intro.on .trio .card:nth-child(3){animation-delay:1s}
+.intro.on .band{animation:i-rise .7s 1.5s ease-out both}
+.intro.on .stp{animation:i-drop .55s ease-out both}
+.intro.on .stp:nth-child(1){animation-delay:.5s}.intro.on .stp:nth-child(2){animation-delay:.8s}.intro.on .stp:nth-child(3){animation-delay:1.1s}.intro.on .stp:nth-child(4){animation-delay:1.4s}.intro.on .stp:nth-child(5){animation-delay:1.7s}
+.intro.on .arw{animation:i-fade 1s 2.2s both}
+.intro.on .h.zoom{animation:i-zoom .9s .1s cubic-bezier(.2,.8,.3,1) both}
+.cover h1 span{display:block}
+.intro.on.cover h1 span{animation:i-rise .6s ease-out both}
+.intro.on.cover h1 span:nth-child(2){animation-delay:.25s}
+.intro.on .hook{animation:i-hook 1.4s .3s cubic-bezier(.3,1.35,.5,1) both,i-swing 3.2s 1.7s ease-in-out infinite;transform-origin:50% 0%}
+.intro.on .glowp{animation:i-glow 2.4s ease-in-out infinite}
+.intro.on .phone{animation:i-rise .8s .1s ease-out both}
+
 /* comic slides */
 .slide.comic{background:#000;padding:2cqw 4cqw 2.4cqw;justify-content:center;align-items:center}
 .comic-in{width:min(100%, 82cqw);display:flex;flex-direction:column;gap:1cqw}
@@ -275,17 +309,17 @@ svg g[class]{transform-box:fill-box}
 <div class="viewport">
 <div id="deck">
 
-<section class="slide cover">
+<section class="slide cover intro">
   <div class="txt">
     <p class="kicker">O discuție despre siguranța online</p>
-    <h1>Capcana<br>din feed</h1>
+    <h1><span>Capcana</span><span>din feed</span></h1>
     <p class="p">Cum ajunge cineva să admire violența fără să-și dea seama și cum îl putem ajuta înainte să fie prea târziu.</p>
   </div>
   <svg viewBox="0 0 300 420" aria-hidden="true">
-    <path d="M150 0 V70" stroke="#8f95a5" stroke-width="3"/>
+    <ellipse class="glowp" cx="150" cy="270" rx="130" ry="150" fill="#e0263a" opacity=".16"/>
+    <g class="hook"><path d="M150 -100 V70" stroke="#8f95a5" stroke-width="3"/>
     <path d="M150 70 V112 a22 22 0 1 1 -40 -6" fill="none" stroke="#c9cdd8" stroke-width="7" stroke-linecap="round"/>
-    <path d="M110 106 l-8 -14 l16 2z" fill="#c9cdd8"/>
-    <ellipse cx="150" cy="270" rx="130" ry="150" fill="#e0263a" opacity=".16"/>
+    <path d="M110 106 l-8 -14 l16 2z" fill="#c9cdd8"/></g>
     <rect x="70" y="120" width="160" height="290" rx="20" fill="#0b0c10" stroke="#2a2e3a" stroke-width="4"/>
     <rect x="82" y="142" width="136" height="252" rx="6" fill="#121521"/>
     <g fill="#1c2235"><rect x="90" y="152" width="120" height="54" rx="4"/><rect x="90" y="214" width="120" height="54" rx="4"/><rect x="90" y="276" width="120" height="54" rx="4"/><rect x="90" y="338" width="120" height="48" rx="4"/></g>
@@ -295,7 +329,7 @@ svg g[class]{transform-box:fill-box}
   </svg>
 </section>
 
-<section class="slide center">
+<section class="slide center intro">
   <div class="head"><p class="kicker">Ce urmărim azi</p><h2 class="h">Patru lucruri de reținut</h2></div>
   <ul class="ul" style="font-size:var(--t-b);gap:1.8cqw;max-width:60ch">
     <li>Cum te poate atrage, pas cu pas, un grup online care admiră violența.</li>
@@ -305,7 +339,7 @@ svg g[class]{transform-box:fill-box}
   </ul>
 </section>
 
-<section class="slide center">
+<section class="slide center intro">
   <div class="cols grow" style="grid-template-columns:1fr 1fr;align-items:center">
     <div style="display:flex;flex-direction:column;gap:2cqw">
       <p class="kicker">Un cuvânt pe care îl vei auzi</p>
@@ -316,21 +350,21 @@ svg g[class]{transform-box:fill-box}
     <div class="stairs">
       <svg viewBox="0 0 520 400" aria-hidden="true">
         <g font-family="Archivo, Arial, sans-serif" font-weight="800" font-size="19">
-          <rect x="10" y="40" width="200" height="56" fill="#3a3f50"/><text x="22" y="76" fill="#eceef3">Curiozitate</text>
-          <rect x="85" y="106" width="200" height="56" fill="#4a3240"/><text x="97" y="142" fill="#eceef3">Obișnuință</text>
-          <rect x="160" y="172" width="200" height="56" fill="#6a2433"/><text x="172" y="208" fill="#fff">Apartenență</text>
-          <rect x="235" y="238" width="200" height="56" fill="#9c1f30"/><text x="247" y="274" fill="#fff">Admirație</text>
-          <rect x="310" y="304" width="200" height="56" fill="#e0263a"/><text x="322" y="340" fill="#fff">Presiune</text>
+          <g class="stp"><rect x="10" y="40" width="200" height="56" fill="#3a3f50"/><text x="22" y="76" fill="#eceef3">Curiozitate</text></g>
+          <g class="stp"><rect x="85" y="106" width="200" height="56" fill="#4a3240"/><text x="97" y="142" fill="#eceef3">Obișnuință</text></g>
+          <g class="stp"><rect x="160" y="172" width="200" height="56" fill="#6a2433"/><text x="172" y="208" fill="#fff">Apartenență</text></g>
+          <g class="stp"><rect x="235" y="238" width="200" height="56" fill="#9c1f30"/><text x="247" y="274" fill="#fff">Admirație</text></g>
+          <g class="stp"><rect x="310" y="304" width="200" height="56" fill="#e0263a"/><text x="322" y="340" fill="#fff">Presiune</text></g>
         </g>
-        <path d="M30 24 C220 10 420 120 470 286" fill="none" stroke="#8f95a5" stroke-width="2.5" stroke-dasharray="7 7"/>
-        <path d="M470 286 l-12 -14 l18 0z" fill="#8f95a5"/>
+        <g class="arw"><path d="M30 24 C220 10 420 120 470 286" fill="none" stroke="#8f95a5" stroke-width="2.5" stroke-dasharray="7 7"/>
+        <path d="M470 286 l-12 -14 l18 0z" fill="#8f95a5"/></g>
         <text x="10" y="392" font-family="Archivo, Arial, sans-serif" font-size="17" fill="#8f95a5">Fiecare treaptă pare mică. Împreună duc foarte jos.</text>
       </svg>
     </div>
   </div>
 </section>
 
-<section class="slide center">
+<section class="slide center intro">
   <div class="head"><p class="kicker">TCC</p><h2 class="h">Când curiozitatea devine altceva</h2></div>
   <p class="p" style="max-width:68ch;font-size:var(--t-b2)"><strong>True crime</strong> înseamnă povești despre crime care chiar s-au întâmplat: documentare, podcasturi, clipuri. Să te uiți la ele nu e o problemă. <strong>TCC</strong> (True Crime Community) e numele unor grupuri online în care unii oameni trec de la „vreau să înțeleg” la „îl admir pe atacator”.</p>
   <div class="cols">
@@ -339,7 +373,7 @@ svg g[class]{transform-box:fill-box}
   </div>
 </section>
 
-<section class="slide center">
+<section class="slide center intro">
   <div class="head"><p class="kicker">De ce funcționează capcana</p><h2 class="h">Grupul îți dă exact ce îți lipsește</h2></div>
   <div class="trio">
     <div class="card"><span class="big">Atenție</span><p>Cineva îți răspunde la fiecare mesaj. Te simți văzut, poate pentru prima dată.</p></div>
@@ -349,9 +383,9 @@ svg g[class]{transform-box:fill-box}
   <div class="band"><strong style="color:var(--fg)">Și aplicația te împinge mai departe.</strong> Algoritmul, adică sistemul care alege ce îți apare în feed, îți arată tot mai mult din ce te-a ținut atent. Un clip duce la altul, tot mai extrem. Grupul nu îți dă prietenie adevărată: îți dă o identitate falsă și cere tot mai mult în schimb.</div>
 </section>
 
-<section class="slide" style="justify-content:center;background:radial-gradient(ellipse at 50% 120%, #2a0910 0%, var(--bg) 65%)">
+<section class="slide intro" style="justify-content:center;background:radial-gradient(ellipse at 50% 120%, #2a0910 0%, var(--bg) 65%)">
   <p class="kicker">Banda desenată</p>
-  <h2 class="h" style="font-size:clamp(36px,7cqw,96px)">Povestea lui Andrei</h2>
+  <h2 class="h zoom" style="font-size:clamp(36px,7cqw,96px)">Povestea lui Andrei</h2>
   <p class="p">Urmăriți cum se schimbă Andrei în 10 scene. Încercați să prindeți momentul în care cineva ar fi putut observa că ceva nu e în regulă.</p>
   <p class="small">Personajele sunt inventate. Nu arătăm atacatori reali și nici violență: atenția este exact ce caută aceste grupuri.</p>
 </section>
@@ -386,17 +420,6 @@ svg g[class]{transform-box:fill-box}
     <div class="myth"><span class="m">„Nu e treaba mea.”</span><span class="a">Colegii observă primii. Adulții află, de multe ori, ultimii.</span></div>
     <div class="myth"><span class="m">„Un report nu schimbă nimic.”</span><span class="a">Fiecare raportare ajută platforma să găsească și să șteargă conținutul.</span></div>
   </div>
-</section>
-
-<section class="slide center">
-  <div class="head"><p class="kicker">Concret</p><h2 class="h">Ce poți face tu</h2></div>
-  <ol class="steps">
-    <li><span><b>Nu le da atenție.</b> Nu distribui, nu da like, nu comenta, nu salva.</span></li>
-    <li><span><b>Raportează</b> contul sau clipul direct pe platformă.</span></li>
-    <li><span><b>Vorbește cu un adult de încredere:</b> diriginte, consilier, părinte.</span></li>
-    <li><span><b>Rămâi aproape</b> de colegul care stă mereu singur. O invitație simplă contează.</span></li>
-    <li><span><b>Dacă cineva e în pericol chiar acum,</b> sună la 112.</span></li>
-  </ol>
 </section>
 
 <section class="slide center">
