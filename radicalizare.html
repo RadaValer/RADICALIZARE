@@ -179,6 +179,16 @@ body{font-family:var(--f-ui);padding-left:max(16px, env(safe-area-inset-left, 0p
 .intro.on .glowp{animation:i-glow 2.4s ease-in-out infinite}
 .intro.on .phone{animation:i-rise .8s .1s ease-out both}
 
+.help6{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3cqw;width:100%}
+.help6 .card{padding:1.3cqw 1.6cqw;gap:.45cqw}
+.help6 .tag{font-size:clamp(10px,1.05cqw,14px);font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.help6 .num{font-family:var(--f-display);font-size:clamp(22px,2.9cqw,40px);line-height:1;letter-spacing:.03em;display:flex;align-items:center;gap:.3em;font-variant-numeric:tabular-nums;user-select:all}
+.help6 .num.red{color:var(--red)}
+.help6 .num.teal{color:var(--safe)}
+.help6 .num.mail{font-family:var(--f-ui);font-weight:800;font-size:clamp(14px,1.75cqw,24px);letter-spacing:0;color:var(--fg);overflow-wrap:anywhere;min-height:1.65em}
+.help6 .dotred{width:.7em;height:.7em;border-radius:50%;background:var(--red);box-shadow:0 0 0 .14em #4a0f16;flex:none}
+.help6 p{margin:0;font-size:clamp(12px,1.35cqw,19px);line-height:1.35;color:var(--soft)}
+
 /* comic slides */
 .slide.comic{background:#000;padding:2cqw 4cqw 2.4cqw;justify-content:center;align-items:center}
 .comic-in{width:min(100%, 82cqw);display:flex;flex-direction:column;gap:1cqw}
@@ -327,6 +337,82 @@ svg g[class]{transform-box:fill-box}
   .b::before,.b::after{display:none!important}
   .b.speech[data-who]::before,.b.thought[data-who]::before{display:block!important;content:attr(data-who);position:static;border:0;background:none;width:auto;height:auto;font-family:var(--f-ui);font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5b6170;margin-bottom:2px}
 }
+
+/* ---------- app preview (click a tab on the phone in scene 2) ---------- */
+.app-tab{cursor:pointer;outline:none}
+.app-tab:hover > rect,.app-tab:focus-visible > rect{fill:#3a1820;stroke:#fff;stroke-width:2.5}
+.appm{position:fixed;inset:0;z-index:1000;background:rgba(3,4,6,.9);display:grid;place-items:center;overflow:auto;padding:max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));font-family:var(--f-ui);color:#eceef3;animation:appmIn .25s ease-out both}
+@keyframes appmIn{from{opacity:0}to{opacity:1}}
+.appm-in{display:flex;gap:32px;align-items:center;justify-content:center;max-width:980px;width:100%}
+.appm-x{position:fixed;top:calc(14px + env(safe-area-inset-top, 0px));right:calc(14px + env(safe-area-inset-right, 0px));font:800 14px var(--f-ui);color:#eceef3;background:#14161d;border:2px solid #2a2e3a;padding:9px 14px;cursor:pointer}
+.appm-x:hover,.appm-x:focus-visible{border-color:#e0263a;outline:none}
+.ph{position:relative;flex:none;width:min(340px, calc((100vh - 64px) * 9 / 19));aspect-ratio:9/19;border:10px solid #0b0c10;border-radius:36px;overflow:hidden;background:#0d0e13;box-shadow:0 0 0 2px #2a2e3a,0 30px 80px rgba(224,38,58,.18);display:flex;flex-direction:column;font-size:13px;line-height:1.35;animation:phIn .45s cubic-bezier(.2,1.3,.4,1) both}
+@keyframes phIn{from{transform:translateY(30px) scale(.94);opacity:0}to{transform:none;opacity:1}}
+.ph-status{display:flex;justify-content:space-between;padding:8px 18px 4px;font-weight:800;font-size:11px;color:#c9cdd8;flex:none}
+.appm-side{max-width:380px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.appm-side .k{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#e0263a;margin:0}
+.appm-side h2{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,4vw,46px);letter-spacing:.03em;line-height:1;margin:0}
+.appm-side ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:16px;line-height:1.4;color:#c9cdd8}
+.appm-side li{display:grid;grid-template-columns:22px 1fr;gap:8px}
+.appm-side li::before{content:"!";display:grid;place-items:center;width:20px;height:20px;background:#e0263a;color:#fff;font-weight:800;font-size:12px;margin-top:1px}
+.appm-side .fine{font-size:12.5px;color:#8f95a5;margin:0}
+@keyframes rowIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.ph .in{animation:rowIn .4s ease-out both;animation-delay:var(--d,0s)}
+/* short video */
+.vid{background:#000}
+.vid .bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%, #4a1f58 0%, #1a0c22 45%, #050308 80%)}
+.vid .sil{position:absolute;left:50%;top:22%;width:46%;transform:translateX(-50%);fill:#050208}
+.vid .spark{position:absolute;width:10px;height:10px;background:#ffe27a;clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);animation:tw 1.4s ease-in-out infinite}
+@keyframes tw{50%{transform:scale(.4) rotate(45deg);opacity:.4}}
+.vid .top{position:relative;text-align:center;font-weight:800;font-size:13px;padding:4px 0}
+.vid .top span{border-bottom:2px solid #fff;padding-bottom:3px}
+.vid .side{position:absolute;right:8px;bottom:118px;display:flex;flex-direction:column;align-items:center;gap:14px;font-size:11px;font-weight:800}
+.vid .side .av{width:38px;height:38px;border-radius:50%;background:#2a2b3a;border:2px solid #fff;display:grid;place-items:center;font-family:var(--f-display);font-size:20px;color:#b9a8ff}
+.vid .side div{display:flex;flex-direction:column;align-items:center;gap:3px}
+.vid .side svg{width:28px;height:28px;fill:#fff}
+.vid .side .hrt svg{fill:#ff3b5c;animation:hb .9s ease-in-out infinite}
+@keyframes hb{30%{transform:scale(1.2)}}
+.vid .info{position:absolute;left:12px;right:64px;bottom:22px;display:flex;flex-direction:column;gap:4px}
+.vid .info b{font-size:14px}
+.vid .info p{margin:0}
+.vid .hash{color:#ffd7e0;font-weight:800}
+.vid .com{position:absolute;left:12px;right:70px;bottom:104px;display:flex;flex-direction:column;gap:6px}
+.vid .com div{background:rgba(0,0,0,.55);border-radius:12px;padding:5px 9px;font-size:12px;width:max-content;max-width:100%}
+.vid .bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.25)}
+.vid .bar i{display:block;height:100%;width:0;background:#fff;animation:bar 8s linear infinite}
+@keyframes bar{to{width:100%}}
+/* chat server */
+.srv{background:#16171d}
+.srv .hd{display:flex;flex-direction:column;gap:2px;padding:6px 14px 10px;border-bottom:1px solid #262833;flex:none}
+.srv .hd b{font-size:15px}
+.srv .hd small{color:#8f95a5;font-size:11px}
+.srv .chips{display:flex;gap:6px;padding:8px 10px;overflow:hidden;flex:none;border-bottom:1px solid #262833}
+.srv .chips span{font-size:11px;font-weight:800;color:#9aa0b0;background:#22242d;border-radius:8px;padding:4px 8px;white-space:nowrap}
+.srv .chips span.on{color:#fff;background:#3a3d4b}
+.srv .msgs{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:12px;padding:12px;overflow:hidden}
+.srv .m{display:grid;grid-template-columns:34px 1fr;gap:9px}
+.srv .m i{width:34px;height:34px;border-radius:50%;background:#2a2b3a;display:grid;place-items:center;font-style:normal;font-family:var(--f-display);font-size:17px;color:#b9a8ff}
+.srv .m b{font-size:13px;color:#e8e9f0}
+.srv .m b small{font-weight:400;color:#6f7587;font-size:10px;margin-left:6px}
+.srv .m p{margin:2px 0 0;color:#d4d6de}
+.srv .sys{font-size:12px;color:#5fd3a0}
+.srv .inp,.chn .inp{margin:0 10px 12px;background:#22242d;border-radius:10px;padding:10px 12px;color:#6f7587;font-size:12px;flex:none}
+/* broadcast channel */
+.chn{background:#0f1218}
+.chn .hd{display:flex;align-items:center;gap:10px;padding:6px 12px 10px;border-bottom:1px solid #222733;flex:none}
+.chn .hd .av{width:36px;height:36px;border-radius:50%;background:#2a2b3a;display:grid;place-items:center;font-family:var(--f-display);font-size:18px;color:#b9a8ff;flex:none}
+.chn .hd b{display:block;font-size:14px}
+.chn .hd small{color:#8f95a5;font-size:11px}
+.chn .posts{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:12px;overflow:hidden;background:radial-gradient(circle at 30% 20%, #161b26, #0b0e14)}
+.chn .post{background:#1b202c;border-radius:12px 12px 12px 4px;padding:9px 11px;max-width:92%;display:flex;flex-direction:column;gap:6px}
+.chn .post p{margin:0}
+.chn .pin{font-size:11px;font-weight:800;color:#ff8a90}
+.chn .thumb{height:92px;border-radius:8px;background:linear-gradient(135deg,#3a1b22,#14080b);display:grid;place-items:center}
+.chn .thumb::after{content:"";border-style:solid;border-width:12px 0 12px 20px;border-color:transparent transparent transparent #ff5a5f}
+.chn .meta2{font-size:10.5px;color:#7f88a3;text-align:right}
+.chn .inp{text-align:center}
+@media (max-width:720px){.appm-in{flex-direction:column;gap:18px}.ph{width:min(300px, calc((100vh - 220px) * 9 / 19))}.appm-side{max-width:340px}}
+@media (prefers-reduced-motion:reduce){.appm,.ph,.ph .in,.vid .bar i,.vid .spark,.vid .side .hrt svg{animation:none!important}}
 /* COMIC-CSS-END */
 
 @media (max-width:760px){
@@ -334,7 +420,7 @@ svg g[class]{transform-box:fill-box}
   .slide{display:flex;aspect-ratio:auto;margin-bottom:18px;padding:22px 18px 34px;gap:14px}
   .cover{flex-direction:column;align-items:flex-start}
   .cover svg{max-width:220px}
-  .cols,.trio,.grid6,.qs,.help3,.quad{grid-template-columns:1fr}
+  .cols,.trio,.grid6,.qs,.help3,.quad,.help6{grid-template-columns:1fr}
   .sym4{grid-template-columns:1fr 1fr}
   .myth{grid-template-columns:1fr;gap:6px}
   .comic-in{width:100%}
@@ -514,10 +600,13 @@ svg g[class]{transform-box:fill-box}
 
 <section class="slide">
   <div class="head"><p class="kicker">Ține minte</p><h2 class="h">Unde găsești ajutor</h2></div>
-  <div class="help3">
-    <div class="card"><span class="num">Consilierul școlar</span><p>La cabinetul de consiliere din școală. Poți merge singur sau împreună cu un prieten.</p></div>
-    <div class="card"><span class="num teal">116 111</span><p>Telefonul Copilului. Gratuit. Poți vorbi despre orice te îngrijorează.</p></div>
-    <div class="card"><span class="num red">112</span><p>Dacă cineva e în pericol chiar acum.</p></div>
+  <div class="help6">
+    <div class="card"><span class="tag">În școală</span><span class="num">Consilierul școlar</span><p>La cabinetul de consiliere. Poți merge singur sau cu un prieten.</p></div>
+    <div class="card"><span class="tag">În școală</span><span class="num">Cutia de sesizări</span><p>Lângă cabinetul de consiliere școlară. Scrie ce ai văzut și lasă bilețelul acolo.</p></div>
+    <div class="card"><span class="tag">În catalog</span><span class="num red"><i class="dotred" aria-hidden="true"></i>Butonul roșu</span><p>Butonul roșu din catalog trimite o sesizare direct școlii.</p></div>
+    <div class="card"><span class="tag">Pe email</span><span class="num mail">sigurantascoalara@lmvineu.ro</span><p>Scrie oricând ce te îngrijorează. Poți atașa o captură de ecran.</p></div>
+    <div class="card"><span class="tag">Telefon gratuit</span><span class="num teal">116 111</span><p>Telefonul Copilului. Poți vorbi despre orice te îngrijorează.</p></div>
+    <div class="card"><span class="tag">Urgență</span><span class="num red">112</span><p>Dacă cineva e în pericol chiar acum.</p></div>
   </div>
   <div class="band">Pe orice aplicație: butonul <strong style="color:var(--fg)">Raportează</strong> (Report). Nu distribui conținutul ca să-l „arăți” altora.</div>
 </section>
@@ -606,7 +695,7 @@ const scenes=[
   `<ellipse cx="400" cy="230" rx="230" ry="210" fill="#5ab8ff" opacity=".12"/>`+
   `<rect x="282" y="18" width="236" height="414" rx="28" fill="#0b0c10" stroke="#000" stroke-width="4"/><rect x="296" y="44" width="208" height="370" rx="8" fill="#0f1422"/>`+
   T(400,66,'02:47',{a:'middle',s:15})+
-  [['TikTok',9],['Discord',27],['Telegram',14]].map(([n,c],k)=>{const x=302+k*67;return `<rect x="${x}" y="76" width="62" height="22" rx="11" fill="#1b2235" stroke="#e0263a" stroke-width="1.5"/>${T(x+31,91,n,{a:'middle',s:10})}<g class="badge" style="animation-delay:${k*.3}s"><circle cx="${x+57}" cy="77" r="8" fill="#e0263a" stroke="#0f1422" stroke-width="2"/>${T(x+57,80.5,c,{a:'middle',s:8.5,c:'#fff'})}</g>`}).join('')+
+  [['TikTok',9],['Discord',27],['Telegram',14]].map(([n,c],k)=>{const x=302+k*67;return `<g class="app-tab" data-app="${n}" tabindex="0" role="button" aria-label="Deschide ${n}"><title>Apasă ca să vezi cum arată</title><rect x="${x}" y="76" width="62" height="22" rx="11" fill="#1b2235" stroke="#e0263a" stroke-width="1.5"/>${T(x+31,91,n,{a:'middle',s:10})}<g class="badge" style="animation-delay:${k*.3}s"><circle cx="${x+57}" cy="77" r="8" fill="#e0263a" stroke="#0f1422" stroke-width="2"/>${T(x+57,80.5,c,{a:'middle',s:8.5,c:'#fff'})}</g></g>`}).join('')+
   `<g clip-path="url(#scr${i})"><g class="feed">`+
   ['CAZ REAL:|POVESTEA COMPLETĂ','MINTEA UNUI|ATACATOR','CE NU ȚI-AU|ARĂTAT','PARTEA 7 DIN 12|','CAZ REAL:|POVESTEA COMPLETĂ','MINTEA UNUI|ATACATOR','CE NU ȚI-AU|ARĂTAT','PARTEA 7 DIN 12|'].map((t,k)=>{const y=108+k*82,[a,b]=t.split('|'),[app,via,ab,bg]=[['TikTok','pentru tine','TT','#15161c'],['YouTube','recomandat','YT','#2b1519'],['Discord','#true-crime','DC','#1e2142'],['Telegram','canal privat','TG','#13283b']][k%4];return `<rect x="306" y="${y}" width="188" height="72" rx="6" fill="#1b2235"/><rect x="314" y="${y+10}" width="52" height="52" rx="13" fill="${bg}" stroke="#4a5070" stroke-width="1.5"/>${T(340,y+43,ab,{a:'middle',s:18,c:'#fff'})}${T(376,y+26,a,{s:10.5})}${T(376,y+40,b,{s:10.5})}<text x="376" y="${y+58}" font-family="Archivo, Arial, sans-serif" font-size="9"><tspan font-weight="800" fill="#ff7a82">${app}</tspan><tspan fill="#7f88a3"> · ${via}</tspan></text>`}).join('')+
   `</g></g>`+
@@ -712,6 +801,76 @@ const scenes=[
   {k:'thought',x:'4%',y:'24%',w:'30%',t:'52%',d:1,who:'Ioana',text:'Am văzut toate semnele. Și n-am spus nimic.'},
   {k:'note',x:'54%',y:'4%',w:'43%',d:2.2,title:'Ce rămâne după',list:['Colegi răniți și familii care nu se mai vindecă.','Andrei nu devine „legendă”. Devine un dosar penal și o viață distrusă.','Grupul online trece la următorul „caz” în câteva zile.'],foot:'Finalul ăsta poate fi oprit. Un singur mesaj către un adult îl schimbă. · <b>116 111</b> · <b>112</b>'}]}
 ];
+
+// ---------- app preview (generic, invented interfaces) ----------
+const ICON={
+  heart:'<svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.1C.9 8.5 3 4.5 6.8 4.5c2.2 0 3.6 1.2 5.2 3 1.6-1.8 3-3 5.2-3 3.8 0 5.9 4 4.4 7.4C19.5 16.4 12 21 12 21z"/></svg>',
+  bubble:'<svg viewBox="0 0 24 24"><path d="M12 3c5.2 0 9 3.4 9 7.6s-3.8 7.6-9 7.6c-1 0-2-.1-2.9-.4L4 20l1.4-4.1C3.9 14.6 3 12.7 3 10.6 3 6.4 6.8 3 12 3z"/></svg>',
+  share:'<svg viewBox="0 0 24 24"><path d="M13 4l8 7.5-8 7.5v-4.6c-5 0-8.2 1.5-10 5 .6-5.4 3.3-10 10-10.8z"/></svg>'
+};
+const APPS={
+  TikTok:{kind:'Aplicație de clipuri scurte',
+    watch:['Feed-ul „Pentru tine” învață repede ce te ține atent și îți dă tot mai mult din asta.','Editurile cu muzică și efecte îi fac pe atacatori să pară „cool”.','Comentariile de tipul „legendă” sau „idolul meu” fac totul să pară normal.'],
+    screen:()=>`<div class="ph vid"><div class="bg"></div>
+      <svg class="sil" viewBox="0 0 100 120"><circle cx="50" cy="28" r="20"/><path d="M8 120 Q12 62 50 56 Q88 62 92 120Z"/></svg>
+      ${[[18,22],[78,18],[22,52],[82,46],[60,12]].map(([x,y],k)=>`<i class="spark" style="left:${x}%;top:${y}%;animation-delay:${k*.2}s"></i>`).join('')}
+      <div class="ph-status"><span>02:47</span><span>▮▮▮ 12%</span></div>
+      <div class="top"><span>Pentru tine</span></div>
+      <div class="com"><div class="in" style="--d:.8s"><b>@void.9</b> un geniu neînțeles</div><div class="in" style="--d:1.6s"><b>@r3d_c4se</b> idolul meu 🖤</div><div class="in" style="--d:2.4s"><b>@x_anon</b> partea 8 când??</div></div>
+      <div class="side"><span class="av">?</span><div class="hrt">${ICON.heart}48,2K</div><div>${ICON.bubble}3.104</div><div>${ICON.share}9.870</div></div>
+      <div class="info"><b>@nightfile</b><p>povestea completă, partea 7 <span class="hash">#truecrime #edit #legend</span></p><p style="font-size:11.5px;opacity:.85">♪ sunet original · nightfile</p></div>
+      <div class="bar"><i></i></div></div>`},
+  Discord:{kind:'Server de chat cu canale',
+    watch:['Serverele închise par un loc „doar al vostru”, unde regulile de afară nu contează.','Un canal pentru edituri și unul „doar pentru noi” sunt semnale clare.','„Trimite-mi în privat” mută discuția acolo unde nu o mai vede nimeni.'],
+    screen:()=>`<div class="ph srv"><div class="ph-status"><span>02:47</span><span>▮▮▮ 12%</span></div>
+      <div class="hd"><b>TC archive</b><small>🔒 server privat · 312 membri</small></div>
+      <div class="chips"><span># bun-venit</span><span class="on"># true-crime</span><span># edituri</span><span># doar-noi 🔒</span></div>
+      <div class="msgs">
+        <div class="sys in" style="--d:.3s">→ andrei_07 a intrat pe server.</div>
+        <div class="m in" style="--d:.9s"><i>N</i><div><b>nightfile<small>azi la 02:41</small></b><p>bine ai venit printre noi</p></div></div>
+        <div class="m in" style="--d:1.6s"><i>R</i><div><b>r3d_c4se<small>azi la 02:43</small></b><p>aici nimeni nu te judecă</p></div></div>
+        <div class="m in" style="--d:2.3s"><i>V</i><div><b>void.9<small>azi la 02:44</small></b><p>ai văzut editul nou din #edituri?</p></div></div>
+        <div class="m in" style="--d:3s"><i>N</i><div><b>nightfile<small>azi la 02:46</small></b><p>scrie-mi în privat. îți arăt ceva ce nu e pentru oricine</p></div></div>
+      </div>
+      <div class="inp">Scrie în #true-crime</div></div>`},
+  Telegram:{kind:'Canal privat',
+    watch:['Canalele private circulă doar prin linkuri de invitație, ca să nu fie găsite ușor.','Doar administratorii scriu. Tu doar primești, zi și noapte.','„Nu da linkul celor din afară” înseamnă secret, iar secretul izolează.'],
+    screen:()=>`<div class="ph chn"><div class="ph-status"><span>02:47</span><span>▮▮▮ 12%</span></div>
+      <div class="hd"><span class="av">?</span><div><b>Arhiva întunecată</b><small>canal privat · 2.481 abonați</small></div></div>
+      <div class="posts">
+        <div class="post in" style="--d:.3s"><span class="pin">📌 Mesaj fixat</span><p>Reguli: ce se vorbește aici rămâne aici.</p></div>
+        <div class="post in" style="--d:1s"><div class="thumb"></div><p>partea 7: ce nu ți-au arătat</p><span class="meta2">👁 12,4K · 23:41</span></div>
+        <div class="post in" style="--d:1.8s"><p>Link de invitație nou. Nu-l trimite celor din afară. Expiră în 24 de ore.</p><span class="meta2">👁 9,1K · 02:15</span></div>
+      </div>
+      <div class="inp">🔇 Doar administratorii pot scrie</div></div>`}
+};
+let appmEl=null, appmBack=null;
+function openApp(name){
+  const a=APPS[name]; if(!a) return;
+  closeApp();
+  appmBack=document.activeElement;
+  appmEl=document.createElement('div');
+  appmEl.className='appm'; appmEl.setAttribute('role','dialog'); appmEl.setAttribute('aria-modal','true'); appmEl.setAttribute('aria-label',name);
+  appmEl.innerHTML=`<button class="appm-x" type="button">✕ Închide (Esc)</button><div class="appm-in">${a.screen()}<div class="appm-side"><p class="k">${name} · ${a.kind}</p><h2>La ce să fii atent</h2><ul>${a.watch.map(w=>`<li>${w}</li>`).join('')}</ul><p class="fine">Ilustrație inventată, nu o captură reală. Conturile și mesajele sunt fictive.</p></div></div>`;
+  appmEl.addEventListener('click',e=>{ if(e.target===appmEl||e.target.closest('.appm-x')) closeApp(); });
+  (document.fullscreenElement||document.body).appendChild(appmEl);
+  appmEl.querySelector('.appm-x').focus();
+}
+function closeApp(){
+  if(!appmEl) return;
+  appmEl.remove(); appmEl=null;
+  try{ appmBack&&appmBack.focus&&appmBack.focus(); }catch(e){}
+}
+document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest('.app-tab'); if(t) openApp(t.dataset.app);});
+window.addEventListener('keydown',e=>{
+  if(appmEl){
+    if(e.key==='Escape'){ e.preventDefault(); closeApp(); }
+    if(e.key!=='Tab'&&!(e.key==='Enter'&&e.target.closest&&e.target.closest('.appm-x'))) e.stopImmediatePropagation();
+    return;
+  }
+  const t=e.target.closest&&e.target.closest('.app-tab');
+  if(t&&(e.key==='Enter'||e.key===' ')){ e.preventDefault(); e.stopImmediatePropagation(); openApp(t.dataset.app); }
+},true);
 // COMIC-JS-END
 
 const anchor=document.getElementById('comic-here');
